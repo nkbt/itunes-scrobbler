@@ -1,6 +1,6 @@
 {
   "name": "itunes-scrobbler",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Scrobble retrospectively plays and loved tracks to Last.FM from iTunes database.",
   "main": "index.js",
   "bin": {
