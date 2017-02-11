@@ -8,7 +8,7 @@ const {getItunesTracks} = require('@johnpaulvaughan/itunes-music-library-tracks'
 const makeId = ({artist, album, track}) => `track|${artist}|${album}|${track}`;
 
 
-const makeName = ({artist, track}) => `${artist} - ${track}`;
+const makeName = ({artist, album, track}) => `${artist} [${album}] ${track}`;
 
 
 const decode = buffer => JSON.parse(buffer.toString('utf-8'));
