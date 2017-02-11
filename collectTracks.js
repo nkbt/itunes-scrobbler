@@ -40,9 +40,13 @@ exports.collectTracks = () => new Promise((resolve, reject) => getItunesPath()
       }
     };
 
+    let error = false;
     stream.on('data', onTrack);
-    stream.on('error', error => console.log(error));
-    stream.on('error', () => process.exit(1));
-    stream.on('end', () => resolve(tracks));
+    stream.on('error', err => {
+      if (!error) {
+        error = err;
+      }
+    });
+    stream.on('end', () => error ? reject(error) : resolve(tracks));
   })
 );
