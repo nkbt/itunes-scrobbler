@@ -1,3 +1,6 @@
+'use strict';
+
+
 const {getItunesPath} = require('@johnpaulvaughan/itunes-music-library-path');
 const {getItunesTracks} = require('@johnpaulvaughan/itunes-music-library-tracks');
 
@@ -22,7 +25,7 @@ const map = track => ({
 });
 
 
-exports.collect = () => new Promise((resolve, reject) => getItunesPath()
+exports.collectTracks = () => new Promise((resolve, reject) => getItunesPath()
   .then(getItunesTracks)
   .then(stream => {
     const tracks = [];
