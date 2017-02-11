@@ -1,0 +1,24 @@
+{
+  "name": "itunes-to-lastfm",
+  "version": "0.0.0",
+  "description": "Scrobble retrospectively play counts and loved tracks to Last.FM from iTunes database.",
+  "main": "index.js",
+  "bin": {
+    "itunes-to-lastfm": "cli.js"
+  },
+  "scripts": {
+    "start": "./cli.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nik Butenko <nik@butenko.me>",
+  "license": "MIT",
+  "dependencies": {
+    "@johnpaulvaughan/itunes-music-library-path": "2.0.2",
+    "@johnpaulvaughan/itunes-music-library-tracks": "1.0.5",
+    "bluebird": "3.4.7",
+    "level": "1.6.0",
+    "level-errors": "1.0.4",
+    "level-logs": "1.1.2",
+    "scribble": "0.0.5"
+  }
+}
