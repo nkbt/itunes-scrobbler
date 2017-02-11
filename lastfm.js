@@ -16,7 +16,10 @@ const makeHash = input =>
 const post = body => fetch(LASTFM_API, {method: 'POST', body})
   .then(res => res.json())
   .then(json => {
-    console.log(JSON.stringify(json, null, 2));
+    if (json.error) {
+      return Promise.reject(new Error(json.message))
+    }
+    return json;
   });
 
 
@@ -77,8 +80,11 @@ LastFm.prototype.getSessionKey = function () {
 
   return fetch(`${LASTFM_API}?${data}`)
     .then(res => res.json())
-    .then(res => {
-      this.sessionKey = res.session.key;
+    .then(json => {
+      if (json.error) {
+        return Promise.reject(new Error(json.message));
+      }
+      this.sessionKey = json.session.key;
       return this.sessionKey;
     });
 };
