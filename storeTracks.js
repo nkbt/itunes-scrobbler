@@ -6,16 +6,15 @@ const {NotFoundError} = require('level-errors');
 
 const {promiseQueue} = require('./promiseQueue');
 const {db} = require('./db');
-const {append: scrobble} = require('./scrobbleQueue');
+const {append} = require('./queue');
 
 
-const shouldScrobble = track => db
-  .getAsync(track.id)
-  .then(({playCount, lastPlayed}) =>
-    playCount < track.playCount || lastPlayed < track.lastPlayed ?
-      Promise.resolve(track) :
-      Promise.reject(track))
-  .catch(NotFoundError, () => Promise.resolve(track));
+const scrobble = track => append('scrobble')(track)
+  .tap(({name}) => console.log(`Will scrobble: ${name}`));
+
+
+const love = track => append('love')(track)
+  .tap(({name}) => console.log(`Will love: ${name}`));
 
 
 const save = track => db
@@ -28,9 +27,33 @@ const skip = track => track instanceof Error ?
   console.log(`Skipping: ${track.name}`);
 
 
-const processTrack = track => shouldScrobble(track)
-  .tap(() => console.log(`Will scrobble: ${track.name}`))
-  .then(scrobble)
+const maybeQueue = track => db.getAsync(track.id)
+  .then(({playCount, lastPlayed, loved}) => {
+    const promises = [];
+    if (track.playCount > playCount || track.lastPlayed > lastPlayed) {
+      promises.push(scrobble(track))
+    }
+    if (track.loved && !loved) {
+      promises.push(love(track))
+    }
+    return promises;
+  })
+  .catch(NotFoundError, () => {
+    const promises = [];
+    if (track.playCount && track.lastPlayed) {
+      promises.push(scrobble(track))
+    }
+    if (track.loved) {
+      promises.push(love(track))
+    }
+    return promises;
+  })
+  .then(promises => promises.length ?
+    Promise.all(promises).then(() => track) :
+    Promise.reject(track));
+
+
+const processTrack = track => maybeQueue(track)
   .then(save)
   .catch(skip);
 
