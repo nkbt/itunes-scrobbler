@@ -49,7 +49,23 @@ exports.scrobbleTracks = () => {
     .tap(() => commit(from + i));
 
 
-  const tap = (response, {name}) => console.log(`Successfully scrobbled: ${name}`);
+  const status = response => {
+    if (response.scrobbles['@attr'].accepted) {
+      return '[ACCEPTED]';
+    }
+
+    if (response.scrobbles['@attr'].ignored) {
+      if (response.scrobbles.scrobble.ignoredMessage['#text']) {
+        return `[IGNORED] ${response.scrobbles.scrobble.ignoredMessage['#text']}`;
+      }
+      return `[IGNORED] Too old ${new Date(response.scrobbles.scrobble.timestamp * 1000)}`;
+    }
+
+    return '';
+  };
+
+
+  const tap = (response, {name}) => console.log(`Scrobbled: ${name}`, status(response));
 
 
   return Promise.all([getOffset(QUEUE), getMaxOffset(QUEUE)])
