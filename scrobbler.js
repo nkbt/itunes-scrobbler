@@ -1,7 +1,7 @@
 'use strict';
 
 
-const scribble = require('scribble');
+const LastFm = require('./lastfm');
 
 
 const options = {};
@@ -19,9 +19,9 @@ const {
 } = options;
 
 
-exports.scrobbler = new scribble(
+exports.scrobbler = new LastFm({
   LASTFM_API_KEY,
   LASTFM_SECRET,
   LASTFM_USER,
   LASTFM_PASSWORD
-);
+});

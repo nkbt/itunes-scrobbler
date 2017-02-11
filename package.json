@@ -19,6 +19,6 @@
     "level": "1.6.0",
     "level-errors": "1.0.4",
     "level-logs": "1.1.2",
-    "scribble": "0.0.5"
+    "node-fetch": "1.6.3"
   }
 }
