@@ -1,6 +1,7 @@
 'use strict';
 
 
+const Promise = require('bluebird');
 const crypto = require('crypto');
 const querystring = require('querystring');
 const fetch = require('node-fetch');
@@ -13,7 +14,7 @@ const makeHash = input =>
   crypto.createHash('md5').update(input, 'utf8').digest('hex');
 
 
-const post = body => fetch(LASTFM_API, {method: 'POST', body})
+const post = body => Promise.resolve(fetch(LASTFM_API, {method: 'POST', body}))
   .then(res => res.json())
   .then(json => {
     if (json.error) {
@@ -78,7 +79,7 @@ LastFm.prototype.getSessionKey = function () {
     format: 'json'
   }));
 
-  return fetch(`${LASTFM_API}?${data}`)
+  return Promise.resolve(fetch(`${LASTFM_API}?${data}`))
     .then(res => res.json())
     .then(json => {
       if (json.error) {
