@@ -25,13 +25,19 @@ const map = track => ({
 });
 
 
+const unfuckery = track => Object.keys(track)
+  .reduce((result, key) => Object.assign(result, {
+    [key]: typeof(track[key]) === 'string' ? track[key].replace(/&#38;/g, '&') : track[key]
+  }), {});
+
+
 exports.collectTracks = () => new Promise((resolve, reject) => getItunesPath()
   .then(getItunesTracks)
   .then(stream => {
     const tracks = [];
 
     const onTrack = buffer => {
-      const track = map(decode(buffer));
+      const track = unfuckery(map(decode(buffer)));
       if (track.playCount > 0 || track.loved) {
         tracks.push(Object.assign({
           id: makeId(track),
