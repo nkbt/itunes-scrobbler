@@ -45,8 +45,11 @@ LastFm.prototype.unlove = function ({artist, album = '_', track}) {
 };
 
 
+const ALMOST_TWO_WEEKS = 14 * 24 * 3600 * 1000 - 3600 * 1000;
+
+
 LastFm.prototype.scrobble = function ({artist, album = '_', track, lastPlayed}) {
-  const timestamp = Math.floor(lastPlayed > 0 ? lastPlayed : Date.now() / 1000);
+  const timestamp = Math.floor(Math.max(lastPlayed, Date.now() - ALMOST_TWO_WEEKS) / 1000);
 
   return this.prepareData({method: 'track.scrobble', artist, album, track, timestamp})
     .then(post)
