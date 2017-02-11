@@ -11,10 +11,10 @@ const {db} = require('./db');
 const log = Promise.promisifyAll(levelLog(db));
 
 
-exports.append = track => log
-  .appendAsync('scrobble', track)
+exports.append = queue => track => log
+  .appendAsync(queue, track)
   .then(() => track);
 
 
-exports.get = i => log
-  .getAsync('scrobble', i);
+exports.get = queue => i => log
+  .getAsync(queue, i);
