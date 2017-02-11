@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 
-const {collect, store, love, scrobble} = require('.');
+const {collect, store, love, scrobble} = require('..');
 
 
 collect()

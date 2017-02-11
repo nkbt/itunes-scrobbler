@@ -1,7 +1,7 @@
 'use strict';
 
 
-const {db} = require('./db');
+const {db} = require('../lib/db');
 
 
 db.createReadStream()

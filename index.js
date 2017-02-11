@@ -1,9 +1,9 @@
 'use strict';
 
 
-const {storeTracks: store} = require('./storeTracks');
-const {collectTracks: collect} = require('./collectTracks');
-const {scrobbleTracks: scrobble, loveTracks: love} = require('./submitTracks');
+const {storeTracks: store} = require('./lib/storeTracks');
+const {collectTracks: collect} = require('./lib/collectTracks');
+const {scrobbleTracks: scrobble, loveTracks: love} = require('./lib/submitTracks');
 
 
 exports.store = store;

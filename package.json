@@ -4,8 +4,8 @@
   "description": "Scrobble retrospectively plays and loved tracks to Last.FM from iTunes database.",
   "main": "index.js",
   "bin": {
-    "itunes-scrobbler": "cli.js",
-    "itunes-scrobbler-dump": "dump.js"
+    "itunes-scrobbler": "./bin/cli.js",
+    "itunes-scrobbler-dump": "./bin/dump.js"
   },
   "scripts": {
     "start": "./cli.js",
@@ -21,5 +21,12 @@
     "level-errors": "1.0.4",
     "level-logs": "1.1.2",
     "node-fetch": "1.6.3"
-  }
+  },
+  "files": [
+    "bin",
+    "lib",
+    "index.js",
+    "README.md",
+    "secret.sample.json"
+  ]
 }
