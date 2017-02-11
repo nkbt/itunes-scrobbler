@@ -45,7 +45,7 @@ exports.scrobbleTracks = () => {
   const commit = commitOffset(QUEUE);
 
 
-  const processor = (track, i) => scrobbler.love(track)
+  const processor = (track, i) => scrobbler.scrobble(track)
     .tap(() => commit(from + i));
 
 
