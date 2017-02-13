@@ -8,11 +8,28 @@
     "itunes-scrobbler-dump": "./bin/dump.js"
   },
   "scripts": {
-    "start": "./cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nkbt/itunes-scrobbler.git"
+  },
+  "keywords": [
+    "scrobbler",
+    "itunes scrobbler",
+    "scrobble",
+    "manual scrobble",
+    "bulk scrobble",
+    "itunes",
+    "lastfm",
+    "last.fm"
+  ],
   "author": "Nik Butenko <nik@butenko.me>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nkbt/itunes-scrobbler/issues"
+  },
+  "homepage": "https://github.com/nkbt/itunes-scrobbler",
   "dependencies": {
     "@johnpaulvaughan/itunes-music-library-path": "2.0.2",
     "@johnpaulvaughan/itunes-music-library-tracks": "1.0.5",
