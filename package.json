@@ -43,7 +43,6 @@
     "bin",
     "lib",
     "index.js",
-    "README.md",
-    "secret.sample.json"
+    "README.md"
   ]
 }

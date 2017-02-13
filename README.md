@@ -12,7 +12,15 @@ npm install -g itunes-scrobbler
 
 # Run
 
-Copy `secret.sample.json` to `secret.json` and fill all the values.
+Create `secret.json` and fill all the values:
+```json
+{
+  "LASTFM_API_KEY": "Your LastFM API key",
+  "LASTFM_SECRET": "Your LastFM App secret",
+  "LASTFM_USER": "Your LastFM username",
+  "LASTFM_PASSWORD": "Your LastFM password"
+}
+```
 
 Or run `itunes-scrobbler` with these ENV variables:
 
@@ -26,4 +34,5 @@ itunes-scrobbler
 ```
 
 Note that it will create `itunes` folder to keep database.
-Next time you should run it in the same folder again.
+Next time you should run it in the same folder again and it will not submit same tracks again.
+
