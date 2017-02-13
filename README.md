@@ -12,6 +12,10 @@ npm install -g itunes-scrobbler
 
 # Run
 
+You will need to have LastFM developer account
+Check http://www.last.fm/api on how to obtain API key and Secret.
+
+
 Create `secret.json` and fill all the values:
 ```json
 {
@@ -36,3 +40,7 @@ itunes-scrobbler
 Note that it will create `itunes` folder to keep database.
 Next time you should run it in the same folder again and it will not submit same tracks again.
 
+
+# PS
+
+Check out [scrobbler](https://www.npmjs.com/package/scrobbler) tool if you want to manually bulk scrobble 
